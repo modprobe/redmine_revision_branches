@@ -20,6 +20,7 @@ RepositoriesHelper.class_eval do
 
   def has_branch_detail?
     logger.error("SCM respond to branch_contains: #{@repository.scm.respond_to? :branch_contains}")
+    logger.error("SCM class: #{@repository.scm.class}")
     @repository.scm.respond_to? :branch_contains
   end
 

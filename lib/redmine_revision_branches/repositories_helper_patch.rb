@@ -19,6 +19,7 @@ RepositoriesHelper.class_eval do
   end
 
   def has_branch_detail?
+    logger.error("SCM respond to branch_contains: #{@repository.scm.respond_to? :branch_contains}")
     @repository.scm.respond_to? :branch_contains
   end
 
@@ -40,7 +41,9 @@ RepositoriesHelper.class_eval do
   end
 
   def links_to_branches
+    logger.error('links to branches, before return unless')
     return [] unless has_branch_detail?
+    logger.error('made it through the condition...')
     branch_groups.map { |name, branches| branches_link(name, branches) }
   end
 
